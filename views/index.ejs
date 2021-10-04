@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA Practice</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <style>
+        .topic-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .topic {
+            background-color: orange;
+            font-weight: 900;
+            padding: 30px 10px;
+            width: 220px;
+            height: 100px;
+            margin: 10px 10px;
+            border-radius: 20px;
+            word-wrap: break-word;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" style="font-weight: 900;" href="/">&nbsp; DSA-Practice</a>
+
+    </nav>
+
+    <br>
+    <div style="text-align: center;">
+        <div style="text-align: center;">
+            <h1>Choose Topic</h1>
+        </div>
+        <br>
+        <br>
+        <div class="container">
+            <div class="topic-container">
+                <% for(var i=0;i<topics.length;i++) { %>
+                    <a href='/<%= topics[i].name %>'>
+                        <div class="topic">
+                            <% var topicname="" %>
+                            <% for(var j=0;j<topics[i].name.length;j++ ){ %>
+                               <% if(topics[i].name[j]!='&') { %>
+                                   <%topicname+=topics[i].name[j] %>
+                                <%} else { %>
+                                    <%topicname+='  ' %>
+                                <% } %>
+                            <% } %>
+                            <%= topicname %>
+                        </div>
+                    </a>
+
+                <% } %>
+                
+
+            </div>
+        </div>
+        <br>
+        <br>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Add new Topic
+        </button>
+    </div>
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Topic Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/add/topic" method="POST" id="topic-form">
+                      <input type="text" class="form-control" placeholder="Topic Name" name="topic">
+                      <br>
+                      <input  type="submit" class="btn btn-primary" style="float: right;" value=Submit>
+                    </form>
+                </div>
+                <button id="form-submit" type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="display: none;">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+        integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+        integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
+        crossorigin="anonymous"></script>
+        <script>
+            document.getElementById('topic-form').addEventListener('submit',(e)=>{
+                document.getElementById('form-submit').click();
+            })
+        </script>
+</body>
+
+</html>
